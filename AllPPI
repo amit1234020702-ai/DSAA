@@ -1,0 +1,87 @@
+1. Preorder Traversal (Root → Left → Right)
+class Solution {
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+        if (root == null) {
+            List<Integer> list = new ArrayList<>();
+            return list;
+        }
+
+        List<Integer> result = new ArrayList<>();
+
+        // Root
+        result.add(root.val);
+
+        // Left
+        List<Integer> left = preorderTraversal(root.left);
+        for (int i = 0; i < left.size(); i++) {
+            result.add(left.get(i));
+        }
+
+        // Right
+        List<Integer> right = preorderTraversal(root.right);
+        for (int i = 0; i < right.size(); i++) {
+            result.add(right.get(i));
+        }
+
+        return result;
+    }
+}
+2. Inorder Traversal (Left → Root → Right)
+class Solution {
+
+    public List<Integer> inorderTraversal(TreeNode root) {
+        if (root == null) {
+            List<Integer> list = new ArrayList<>();
+            return list;
+        }
+
+        List<Integer> result = new ArrayList<>();
+
+        // Left
+        List<Integer> left = inorderTraversal(root.left);
+        for (int i = 0; i < left.size(); i++) {
+            result.add(left.get(i));
+        }
+
+        // Root
+        result.add(root.val);
+
+        // Right
+        List<Integer> right = inorderTraversal(root.right);
+        for (int i = 0; i < right.size(); i++) {
+            result.add(right.get(i));
+        }
+
+        return result;
+    }
+}
+3. Postorder Traversal (Left → Right → Root)
+class Solution {
+
+    public List<Integer> postorderTraversal(TreeNode root) {
+        if (root == null) {
+            List<Integer> list = new ArrayList<>();
+            return list;
+        }
+
+        List<Integer> result = new ArrayList<>();
+
+        // Left
+        List<Integer> left = postorderTraversal(root.left);
+        for (int i = 0; i < left.size(); i++) {
+            result.add(left.get(i));
+        }
+
+        // Right
+        List<Integer> right = postorderTraversal(root.right);
+        for (int i = 0; i < right.size(); i++) {
+            result.add(right.get(i));
+        }
+
+        // Root
+        result.add(root.val);
+
+        return result;
+    }
+}
