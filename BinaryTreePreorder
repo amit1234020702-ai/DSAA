@@ -1,0 +1,34 @@
+class Solution {
+    // public void dfs(TreeNode root ,List<Integer> ans){
+    //     if(root==null) return;
+    //     ans.add(root.val);
+    //     dfs(root.left,ans);
+    //     dfs(root.right,ans);
+    // }
+    // public List<Integer> preorderTraversal(TreeNode root) {
+    //     List<Integer> ans=new ArrayList<>();
+    //     dfs(root,ans);
+    //     return ans;
+
+        
+    // }
+
+
+    public List<Integer> preorderTraversal(TreeNode root){
+        if(root==null){
+            List<Integer> list=new ArrayList<>();
+            return list;
+        }
+        List<Integer> result=new ArrayList<>();
+        result.add(root.val);
+        List<Integer> left=preorderTraversal(root.left);
+        List<Integer> right=preorderTraversal(root.right);
+        for(int i=0;i<left.size();i++){
+            result.add(left.get(i));
+        }
+        for(int i=0;i<right.size();i++){
+            result.add(right.get(i));
+        }
+        return result;
+    }
+}
