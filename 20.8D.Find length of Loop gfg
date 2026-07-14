@@ -1,0 +1,56 @@
+/*
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+*/
+
+class Solution {
+    public int lengthOfLoop(Node head) {
+        // code here
+       // if(head==null){
+        //    return 0;
+       // }
+        // Node fast=head;
+        // Node slow=head;
+        // while(fast!=null && fast.next!=null){
+        //     fast=fast.next.next;
+        //     slow=slow.next;
+        //     if(fast==slow){
+        //         int count=1;
+        //         slow=slow.next;
+        //         while(fast!=slow){
+        //             slow=slow.next;
+        //             count++;
+        //         }
+        //         return count;
+        //     }
+        // }
+        // return 0;
+        if(head==null){
+            return 0;
+        }
+        Node fast=head;
+        Node slow=head;
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+            if(fast==slow){
+                int count=1;
+                slow=slow.next;
+                while(fast!=slow){
+                    slow=slow.next;
+                    count++;
+                }
+                return count;
+            }
+        }
+        return 0;
+        
+    }
+}
