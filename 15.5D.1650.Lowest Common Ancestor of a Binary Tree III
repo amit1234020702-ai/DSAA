@@ -1,0 +1,59 @@
+import java.util.HashSet;
+
+class Node {
+    int val;
+    Node left, right, parent;
+
+    Node(int val) {
+        this.val = val;
+    }
+}
+
+class Main {
+
+    public static Node lowestCommonAncestor(Node p, Node q) {
+
+        HashSet<Node> set = new HashSet<>();
+
+        while (p != null) {
+            set.add(p);
+            p = p.parent;
+        }
+
+        while (q != null) {
+            if (set.contains(q)) {
+                return q;
+            }
+            q = q.parent;
+        }
+
+        return null;
+    }
+
+    public static void main(String[] args) {
+
+        // Create Nodes
+        Node root = new Node(3);
+        Node n5 = new Node(5);
+        Node n1 = new Node(1);
+        Node n6 = new Node(6);
+        Node n2 = new Node(2);
+
+        // Build Tree
+        root.left = n5;
+        root.right = n1;
+        n5.left = n6;
+        n5.right = n2;
+
+        // Set Parent Pointers
+        n5.parent = root;
+        n1.parent = root;
+        n6.parent = n5;
+        n2.parent = n5;
+
+        // Find LCA of 6 and 2
+        Node ans = lowestCommonAncestor(n6, n2);
+
+        System.out.println("LCA = " + ans.val);
+    }
+}
