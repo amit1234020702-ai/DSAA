@@ -1,0 +1,99 @@
+Node of a linked list
+class Node {
+    int data;
+    Node next;
+    Node(int d) {
+        data = d;
+        next = null;
+    }
+}
+
+class Solution {
+    public Pair<Node, Node> splitList(Node head) {
+
+        // Empty list
+        if (head == null)
+            return new Pair<>(null, null);
+
+        // Single node
+        if (head.next == head)
+            return new Pair<>(head, null);
+
+        Node slow = head;
+        Node fast = head.next;
+
+        
+      //  Input: LinkedList : 10->4->9
+        //Output: 10->4 , 9
+
+
+        // T : O(n)
+        // S : O(1)
+
+        // Example:
+        // 10 -> 4 -> 9 -> 10
+        //            s
+        //                 f
+        //
+        //
+        //
+        //
+
+        while (fast != head && fast.next != head) {
+            slow = slow.next;
+            fast = fast.next;
+
+            if (fast.next != head) {
+                fast = fast.next;
+            }
+        }
+
+        // slow -> last node of first half
+        // fast -> last node of list
+
+        Node head2 = slow.next; // second half starts here
+
+        // Make first half circular
+        slow.next = head;
+
+        // Make second half circular
+        fast.next = head2;
+
+        return new Pair<>(head, head2);
+    }
+}
+
+
+
+
+/// by method gfg
+
+class Solution {
+    public Pair<Node, Node> splitList(Node head) {
+       Node slow=head,
+       fast=head.next;
+       T:O(n)  S:O(1)
+       // 10 4 9 10
+    //       s
+    //            f
+    //           9 10
+    // 10 4
+       
+       
+       
+       while(fast !=head && fast.next!=head){
+           slow=slow.next;
+           fast=fast.next;
+           if(fast.next !=head){
+               fast=fast.next;
+           }
+       }
+       //slow->4
+       //fast ->9
+       fast.next=slow.next;
+       slow.next=head;
+       return new Pair<Node ,Node>(head,fast.next);
+       
+        
+    }
+}
