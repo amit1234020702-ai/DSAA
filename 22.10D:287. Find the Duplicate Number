@@ -1,0 +1,44 @@
+class Solution {
+
+    public int findDuplicate(int[] nums) {
+        int ans = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            int ele = Math.abs(nums[i]);
+
+            if (nums[ele] > 0) {
+                nums[ele] = -nums[ele];
+            } else {
+                ans = ele;
+                break;
+            }
+        }
+
+        // Restore original array
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = Math.abs(nums[i]);
+        }
+
+        return ans;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int[] nums = {1, 3, 4, 2, 2};
+
+        Solution obj = new Solution();
+
+        int duplicate = obj.findDuplicate(nums);
+
+        System.out.println("Duplicate Element = " + duplicate);
+
+        // Print original array (restored)
+        System.out.print("Array: ");
+        for (int num : nums) {
+            System.out.print(num + " ");
+        }
+    }
+}
